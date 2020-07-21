@@ -1,0 +1,10 @@
+[key]
+app_id = 20471389
+api_key = 
+secret_key = 
+
+[options]
+language_type = CHN_ENG
+detect_direction = true
+detect_language = true
+
