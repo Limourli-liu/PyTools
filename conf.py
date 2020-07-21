@@ -19,6 +19,9 @@ class Conf(ConfigParser):
     def setdefault(self, key, default):
         self._changed = True
         return super().setdefault(key, default)
+    def __getitem__(self, section):
+        if section not in self: self.add_section(section)
+        return super().__getitem__(section)
     def add_section(self, section):
         self._changed = True
         return super().add_section(section)
