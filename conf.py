@@ -1,11 +1,15 @@
 import os
-from configparser import ConfigParser
+from configparser import ConfigParser, SectionProxy
 def _path(name, root=None):
     p =  os.path.join(root or os.getcwd(), name)
     return (os.path.exists(p) or not os.mkdir(p)) and p
 def _fp(name):
     return os.path.join(_path('conf'), name)
 
+def S__getitem__(self, key):
+    if not self._parser.has_option(self._name, key): return None
+    return self._parser.get(self._name, key)
+SectionProxy.__getitem__ = S__getitem__
 
 class Conf(ConfigParser):
     def __init__(self, name):
